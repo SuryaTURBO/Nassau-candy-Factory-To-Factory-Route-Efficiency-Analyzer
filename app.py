@@ -115,7 +115,7 @@ US_STATE_ABBR = {
     "Wyoming": "WY", "District of Columbia": "DC",
 }
 
-DATA_PATH = "data/Nassau_Candy_Distributor.csv"
+DATA_PATH = "data/Nassau_Candy_Distributor_repaired.csv"
 
 
 # --------------------------------------------------------------------------------------
@@ -206,11 +206,11 @@ lead_time_threshold = st.sidebar.slider(
 st.sidebar.divider()
 with st.sidebar.expander("⚠️ Data quality note"):
     st.caption(
-        "Order Dates fall in 2024–2025 while Ship Dates fall in 2026–2030 in the source "
-        "file, so raw lead-time values (~900–1,640 days) are not realistic shipping "
-        "durations. All KPIs here are computed consistently from the data as provided, "
-        "so relative comparisons (fastest vs. slowest routes, mode vs. mode) remain valid "
-        "even though absolute day counts should not be read as real-world shipping times."
+        "The supplied file had ship dates years after order dates. In this version the Ship Date "
+        "was reconstructed from the file's own date pattern (Ship Date = Order Date + shipping days "
+        "by ship mode), giving lead times of 0-11 days. It is a reconstruction, not the original "
+        "source data. Lead time depends mainly on ship mode; route and state differences are small "
+        "and should be read with caution. See data/DATA_NOTES.md."
     )
 
 # --------------------------------------------------------------------------------------
